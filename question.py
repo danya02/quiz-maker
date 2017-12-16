@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 class Question:
     def __init__(self, question: str = None, answer: str = None, maxpoints: float = None):
         """Base class for Questions."""
@@ -47,11 +48,20 @@ class YesNoQuestion(Question):
         self.no = no
 
     def test(self, answer: str) -> float:
-        """Grade the answer to this question."""
+        """
+        Grade the given answer.
+        Since this is a yes/no question, it is all-or-nothing; either full marks are awarded or zero.
+        :param answer: The answer to test.
+        :return: Points to be awarded for this question.
+        """
         if self.answer:
             if answer in self.yes:
                 return self.maximum_points
+            elif answer in self.no:
+                return 0.0
         else:
             if answer in self.no:
                 return self.maximum_points
+            elif answer in self.no:
+                return 0.0
         return 0.0
