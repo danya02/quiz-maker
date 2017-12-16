@@ -65,3 +65,24 @@ class YesNoQuestion(Question):
             elif answer in self.no:
                 return 0.0
         return 0.0
+
+
+class ShortStringQuestion(Question):
+    def __init__(self, question: str = None, answer: str = None, points: float = None):
+        """
+        A question with an answer of a short string.
+        :param question: The string of the question.
+        :param answer: The correct answer.
+        :param points: This many points are awarded for correct answer.
+        """
+        super().__init__(question, answer, points)
+        self.answer = self.answer.lower()
+
+    def test(self, answer):
+        """
+        Grade the given answer.
+        The grading is all-or-nothing; either full marks are awarded or zero.
+        :param answer: The answer to test.
+        :return: Points to be awarded for this question.
+        """
+        return float(answer.lower() == self.answer) * self.maximum_points
