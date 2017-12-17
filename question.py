@@ -29,7 +29,7 @@ class Question:
 
 
 class YesNoQuestion(Question):
-    def __init__(self, question: str = None, answer: str = None, points: float = None, yes: list = None,
+    def __init__(self, question: str = None, answer: bool = None, points: float = None, yes: list = None,
                  no: list = None):
         """
         A question with a yes/no answer.
